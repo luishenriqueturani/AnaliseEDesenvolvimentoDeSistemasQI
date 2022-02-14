@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+body{
+    background-image: url('../img/fundo.png');
+    font-family: Verdana, sans-serif;
+}
+
+h1{
+    font-variant: small-caps;
+}
+
+h2{
+    text-shadow: 1px 1px #474747;
+}
+
+#fotoperfil{
+    float: right;
+    width: 200px;
+    height: auto;
+}
+
+.redessociais{
+    width: 50px;
+    height: auto;
+}
+
+.linkmeusite{
+    text-decoration: none;
+    color: black;
+}
