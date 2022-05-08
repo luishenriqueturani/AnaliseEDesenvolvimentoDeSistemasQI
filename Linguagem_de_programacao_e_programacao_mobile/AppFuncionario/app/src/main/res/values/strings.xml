@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AppFuncionario</string>
+
+    <string name="title_text">Digite os dados do funcionário</string>
+    <string name="placeholder_nome">Digite o nome do funcionário</string>
+    <string name="placeholder_telefone">Digite o telefone do funcionário</string>
+    <string name="placeholder_cargo">Digite o cargo do funcionário</string>
+    <string name="txt_btn_gravar">Gravar</string>
 </resources>
