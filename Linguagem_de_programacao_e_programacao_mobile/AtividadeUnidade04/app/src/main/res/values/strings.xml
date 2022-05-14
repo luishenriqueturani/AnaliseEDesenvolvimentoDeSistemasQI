@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Atividade Unidade 04</string>
+
+    <string name="placeholder_valor">Informe o valor unitário</string>
+    <string name="placeholder_quant">Informe a quantidade</string>
+    <string name="placeholder_desconto">Informe o desconto em %</string>
+    <string name="placeholder_resultado">Resultado</string>
+
+    <string name="txt_btn_calcular">Calcular Venda</string>
+
+
+
+
+
+
+</resources>
