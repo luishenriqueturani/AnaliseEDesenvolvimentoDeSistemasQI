@@ -1,7 +1,9 @@
 package br.com.atividadeunidade04.bo;
 
-public interface ICalculosVenda {
-    String calcularVenda(double valor, int quantidade);
+import org.json.JSONException;
 
-    String calcularVenda(double valor, int quantidade, float desconto);
+public interface ICalculosVenda {
+    String calcularVenda(double valor, int quantidade) throws JSONException;
+
+    String calcularVenda(double valor, int quantidade, float desconto) throws JSONException;
 }

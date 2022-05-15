@@ -1,5 +1,9 @@
 package br.com.atividadeunidade04.bo;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class CalculosVenda implements ICalculosVenda {
 
     /**
@@ -11,12 +15,18 @@ public class CalculosVenda implements ICalculosVenda {
      *
      * */
     @Override
-    public String calcularVenda(double valor, int quantidade){
-
+    public String calcularVenda(double valor, int quantidade) throws JSONException {
         try {
-            return "";
+            double resultado = valor * quantidade;
+
+            JSONObject retorno = new JSONObject("[{\"success\": true,\"resultado\": "+ resultado +"}]");
+
+            return retorno.toString();
+
         }catch (Exception e){
-            return "";
+            JSONObject retorno = new JSONObject("[{\"success\": false,\"erro\": "+ e +"}]");
+
+            return retorno.toString();
         }
 
     }
@@ -31,12 +41,23 @@ public class CalculosVenda implements ICalculosVenda {
      *
      * */
     @Override
-    public String calcularVenda(double valor, int quantidade, float desconto){
+    public String calcularVenda(double valor, int quantidade, float desconto) throws JSONException {
 
         try {
-            return "";
+            double resultado = valor * quantidade;
+
+            double valorDesconto = resultado * (desconto/100);
+
+            resultado -= valorDesconto;
+
+            JSONObject retorno = new JSONObject("[{\"success\": true,\"resultado\": "+ resultado +"}]");
+
+            return retorno.toString();
+
         }catch (Exception e){
-            return "";
+            JSONObject retorno = new JSONObject("[{\"success\": false,\"erro\": "+ e +"}]");
+
+            return retorno.toString();
         }
 
     }

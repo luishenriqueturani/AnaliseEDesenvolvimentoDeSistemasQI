@@ -28,7 +28,7 @@ public class Vendas {
     }
 
     public float getDesconto() {
-        return desconto;
+        return this.desconto;
     }
 
     public void setDesconto(float desconto) {
