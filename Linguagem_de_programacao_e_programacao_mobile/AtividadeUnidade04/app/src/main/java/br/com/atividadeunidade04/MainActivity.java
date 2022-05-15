@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
                 Context context = getApplicationContext();
                 try {
 
-                    Vendas v = new Vendas(Double.parseDouble(edValor.getText().toString()),
-                            Integer.parseInt(edQuantidade.getText().toString()),
-                            Float.parseFloat(edDesconto.getText().toString())
+                    Vendas v = new Vendas(Double.parseDouble( edValor.getText().toString().equals("") ? "-1" : edValor.getText().toString() ),
+                            Integer.parseInt( edQuantidade.getText().toString().equals("") ? "-1" : edQuantidade.getText().toString() ),
+                            Float.parseFloat( edDesconto.getText().toString().equals("") ? "0" : edDesconto.getText().toString() )
                     );
 
                     if(Validador.validaNegativo(v.getValor())){
@@ -54,17 +54,17 @@ public class MainActivity extends AppCompatActivity {
 
                     double resultado;
 
-                    if ( v.getDesconto() != 0 ) {
+                    if ( Validador.validaSetado(v.getDesconto()) ) {
                          resultado = cv.calcularVenda( v.getValor(), v.getQuantidade(), v.getDesconto() ) ;
 
                     }else{
-                         resultado = cv.calcularVenda( v.getValor(), v.getQuantidade(), v.getDesconto() ) ;
+                         resultado = cv.calcularVenda( v.getValor(), v.getQuantidade() ) ;
                     }
 
                     tvResultado.setText("R$ "+resultado);
 
                 }catch (Exception e){
-                    GUI.lancarToast(context, "Erro: "+e);
+                    GUI.lancarToast(context, "Erro main: "+e);
                 }
             }
         });

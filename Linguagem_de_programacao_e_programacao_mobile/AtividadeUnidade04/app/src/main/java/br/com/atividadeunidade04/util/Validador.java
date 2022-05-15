@@ -22,6 +22,15 @@ public class Validador {
         }
     }
 
+    public static boolean validaSetado(float valor){
+        try{
+            float f = Float.parseFloat(String.valueOf(valor));
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
 
 
 }
