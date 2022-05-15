@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import br.com.atividadeunidade04.bo.CalculosVenda;
@@ -41,19 +42,24 @@ public class MainActivity extends AppCompatActivity {
                     );
                     float desconto = v.getDesconto();
 
-                    if ( desconto != 0 ) {
-                        JSONObject retornoCalculo = new JSONObject(cv.calcularVenda(v.getValor(), v.getQuantidade(), v.getDesconto()));
+                    JSONArray retornoCalculo;
 
-                        if((boolean)retornoCalculo.get("success")){
-                            edResultado.setText(retornoCalculo.get("resultado").toString());
-                        }else{
-                            GUI.lancarToast(context, retornoCalculo.get("erro").toString());
-                        }
+                    if ( desconto != 0 ) {
+                        retornoCalculo = new JSONArray( cv.calcularVenda( v.getValor(), v.getQuantidade(), v.getDesconto() ) );
 
                     }else{
-                        String retornoCalculo = cv.calcularVenda(v.getValor(), v.getQuantidade());
+                        retornoCalculo = new JSONArray( cv.calcularVenda( v.getValor(), v.getQuantidade(), v.getDesconto() ) );
 
                     }
+
+                    JSONObject jo = new JSONObject(retornoCalculo.getString(0));
+
+                    if((boolean)jo.get("success")){
+                        edResultado.setText(jo.get("resultado").toString());
+                    }else{
+                        GUI.lancarToast(context, jo.get("erro").toString());
+                    }
+                    
                 }catch (Exception e){
                     GUI.lancarToast(context, "Erro: "+e);
                 }
