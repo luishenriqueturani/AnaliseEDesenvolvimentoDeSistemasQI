@@ -54,12 +54,12 @@ public class MainActivity extends AppCompatActivity {
 
                     JSONObject jo = new JSONObject(retornoCalculo.getString(0));
 
-                    if((boolean)jo.get("success")){
-                        edResultado.setText(jo.get("resultado").toString());
+                    if((boolean)jo.getBoolean("success")){
+                        edResultado.setText((int) jo.getDouble("resultado"));
                     }else{
                         GUI.lancarToast(context, jo.get("erro").toString());
                     }
-                    
+
                 }catch (Exception e){
                     GUI.lancarToast(context, "Erro: "+e);
                 }

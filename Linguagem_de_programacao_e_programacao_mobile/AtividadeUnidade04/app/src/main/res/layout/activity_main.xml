@@ -86,7 +86,7 @@
         android:focusable="auto"
         android:focusableInTouchMode="false"
         android:hint="@string/placeholder_resultado"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
