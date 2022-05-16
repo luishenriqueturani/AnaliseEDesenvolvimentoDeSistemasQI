@@ -52,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     }
 
+                    if(v.getDesconto() > 100){
+                        GUI.lancarToast(context, "O desconto não pode ser maior do que 100%. Por favor, informe um valor válido.");
+                        return;
+                    }
+
                     double resultado;
 
                     if ( Validador.validaSetado(v.getDesconto()) ) {
