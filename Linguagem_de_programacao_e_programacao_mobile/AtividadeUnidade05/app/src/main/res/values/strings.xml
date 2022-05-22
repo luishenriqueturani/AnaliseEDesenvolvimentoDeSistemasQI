@@ -1,3 +1,21 @@
 <resources>
-    <string name="app_name">AtividadeUnidade05</string>
+    <string name="app_name">appNotas</string>
+
+    <!-- Tela principal -->
+    <string name="label_img">Ícone calculadora</string>
+    <string name="label_n1">Nota 1</string>
+    <string name="label_n2">Nota 02</string>
+    <string name="placeholder_n1">6</string>
+    <string name="placeholder_n2">6</string>
+    <string name="txt_btn_calcular">Calcular Nota</string>
+    <string name="txt_btn_substituicao">Substituição</string>
+    <string name="txt_resultado">Resultado</string>
+
+    <!-- tela substituicao -->
+    <string name="label_n1_subs">Substituição Nota 1</string>
+    <string name="label_n2_subs">Substituição Nota 2</string>
+    <string name="placeholder_n1_subs">6</string>
+    <string name="placebolder_n2_subs">6</string>
+    <string name="btn_recalcular">Recalcular Nota</string>
+
 </resources>
