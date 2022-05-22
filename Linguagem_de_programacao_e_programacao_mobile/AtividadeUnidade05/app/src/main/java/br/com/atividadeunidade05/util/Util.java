@@ -6,6 +6,12 @@ public class Util {
 
     public static float calularNota(float n1, float n2){
         try{
+            if(validarNota(n1)){
+                return 0;
+            }
+            if(validarNota(n2)){
+                return 0;
+            }
             return (n1 + n2)/2;
         }catch (Exception e){
             GUI.lancarToast(MyApp.getContext(),"Error: " + e.toString());
