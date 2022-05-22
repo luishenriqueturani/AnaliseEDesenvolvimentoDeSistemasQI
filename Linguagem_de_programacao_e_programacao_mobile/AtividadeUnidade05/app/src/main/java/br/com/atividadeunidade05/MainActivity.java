@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import br.com.atividadeunidade05.util.MyApp;
 import br.com.atividadeunidade05.util.Util;
+import br.com.atividadeunidade05.view.GUI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +28,26 @@ public class MainActivity extends AppCompatActivity {
         btnCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tvResultado.setText( String.valueOf(Util.calularNota( Float.parseFloat(edN1.getText().toString()), Float.parseFloat(edN2.getText().toString()) )) );
+
+                float n1 = Float.parseFloat( edN1.getText().toString().isEmpty() ? "0" : edN1.getText().toString() );
+                float n2 = Float.parseFloat( edN2.getText().toString().isEmpty() ? "0" : edN2.getText().toString() );
+
+                //GUI.lancarToast(getApplicationContext(), "N1: "+n1+"\nN2: "+n2);
+
+                if(Util.validarNota( n1) && Util.validarNota( n2)){
+
+                    float resultado = Util.calularNota( n1, n2 );
+
+                    if(resultado < 0){
+                        GUI.lancarToast(getApplicationContext(), "Houve um erro ao calcular.");
+                    }else{
+                        tvResultado.setText( String.valueOf(resultado) );
+                    }
+
+                }else {
+                    GUI.lancarToast(getApplicationContext(), "Valor inválido");
+                }
+
             }
         });
 
@@ -36,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Bundle extras = new Bundle();
-                Intent mainToRecalcular = new Intent(MyApp.getContext(), RecalcularActivity.class);
+                Intent mainToRecalcular = new Intent(getApplicationContext(), RecalcularActivity.class);
 
-                extras.putFloat("n1", Float.parseFloat(edN1.getText().toString()));
-                extras.putFloat("n2", Float.parseFloat(edN2.getText().toString()));
+                extras.putFloat("n1", Float.parseFloat( edN1.getText().toString().isEmpty() ? "0" : edN1.getText().toString() ));
+                extras.putFloat("n2", Float.parseFloat( edN2.getText().toString().isEmpty() ? "0" : edN2.getText().toString() ));
 
                 mainToRecalcular.putExtras(extras);
 

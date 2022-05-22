@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import br.com.atividadeunidade05.util.Util;
+import br.com.atividadeunidade05.view.GUI;
 
 public class RecalcularActivity extends AppCompatActivity {
 
@@ -21,7 +22,7 @@ public class RecalcularActivity extends AppCompatActivity {
         EditText edSN1 = (EditText) findViewById(R.id.edSN1);
         EditText edSN2 = (EditText) findViewById(R.id.edSN2);
         Button btnRecalc = (Button) findViewById(R.id.btnRecalc);
-        TextView tvResultado = (TextView) findViewById(R.id.tvResultado);
+        TextView tvResultado = (TextView) findViewById(R.id.tvResultSubs);
 
         Intent intent = getIntent();
 
@@ -37,7 +38,25 @@ public class RecalcularActivity extends AppCompatActivity {
         btnRecalc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tvResultado.setText( String.valueOf(Util.calularNota( Float.parseFloat(edSN1.getText().toString()), Float.parseFloat(edSN2.getText().toString()) )) );
+
+                float n1 = Float.parseFloat( edSN1.getText().toString().isEmpty() ? "0" : edSN1.getText().toString() );
+                float n2 = Float.parseFloat( edSN2.getText().toString().isEmpty() ? "0" : edSN2.getText().toString() );
+
+                //GUI.lancarToast(getApplicationContext(), "N1: "+n1+"\nN2: "+n2);
+
+                if(Util.validarNota( n1) && Util.validarNota( n2)){
+
+                    float resultado = Util.calularNota( n1, n2 );
+
+                    if(resultado < 0){
+                        GUI.lancarToast(getApplicationContext(), "Houve um erro ao calcular.");
+                    }else{
+                        tvResultado.setText( String.valueOf(resultado) );
+                    }
+
+                }else {
+                    GUI.lancarToast(getApplicationContext(), "Valor inválido");
+                }
             }
         });
 
