@@ -8,16 +8,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
     private static final String CREATE_ENTRIES_PESSOAS = "" +
             "CREATE TABLE IF NOT EXISTS " + BDContract.PessoasEntry.TABLE_NAME + " (" +
-            BDContract.PessoasEntry._ID + " INTEGER PRIMARY KEY," +
-            BDContract.PessoasEntry.COLUMN_NAME_NOME + " VARCHAR(500)," +
-            BDContract.PessoasEntry.COLUMN_NAME_NOME_SOCIAL + " VARCHAR(500)," +
-            BDContract.PessoasEntry.COLUMN_NAME_GENERO + " INTEGER," +
-            BDContract.PessoasEntry.COLUMN_NAME_RENDA + " REAL);";
+                BDContract.PessoasEntry._ID + " INTEGER PRIMARY KEY," +
+                BDContract.PessoasEntry.COLUMN_NAME_NOME + " VARCHAR(500)," +
+                BDContract.PessoasEntry.COLUMN_NAME_NOME_SOCIAL + " VARCHAR(500)," +
+                BDContract.PessoasEntry.COLUMN_NAME_GENERO + " INTEGER," +
+                BDContract.PessoasEntry.COLUMN_NAME_RENDA + " REAL," +
+                BDContract.PessoasEntry.COLUMN_NAME_PAI + " INTEGER," +
+                BDContract.PessoasEntry.COLUMN_NAME_MAE + "INTEGER);";
 
     private static final String CREATE_ENTRIES_GENEROS = "" +
             "CREATE TABLE IF NOT EXISTS " + BDContract.GenerosEntry.TABLE_NAME + " (" +
-            BDContract.GenerosEntry._ID + " INTEGER PRIMARY KEY," +
-            BDContract.GenerosEntry.COLUMN_NAME_TERMO + " VARCHAR(250));";
+                BDContract.GenerosEntry._ID + " INTEGER PRIMARY KEY," +
+                BDContract.GenerosEntry.COLUMN_NAME_TERMO + " VARCHAR(250));";
 
     private static final String DELETE_ENTRIES_PESSOAS = "DROP TABLE IF EXISTS " + BDContract.PessoasEntry.TABLE_NAME + ";";
     private static final String DELETE_ENTRIES_GENEROS = "DROP TABLE IF EXISTS " + BDContract.GenerosEntry.TABLE_NAME + ";";
