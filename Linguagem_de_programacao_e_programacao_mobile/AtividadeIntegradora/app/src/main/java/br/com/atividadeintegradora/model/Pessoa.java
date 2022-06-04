@@ -1,6 +1,7 @@
 package br.com.atividadeintegradora.model;
 
 public class Pessoa {
+    private int id;
     private String nome;
     private String nomeSocial;
     private String genero;
@@ -13,7 +14,21 @@ public class Pessoa {
         this.renda = renda;
     }
 
+    public Pessoa(int id, String nome, String nomeSocial, String genero, float renda) {
+        this.id = id;
+        this.nome = nome;
+        this.nomeSocial = nomeSocial;
+        this.genero = genero;
+        this.renda = renda;
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
