@@ -1,8 +1,33 @@
 <resources>
     <string name="app_name">AtividadeIntegradora</string>
 
+    <string name="txt_titulo">Pessoas Cadastradas</string>
+
+    <!-- botões -->
+
+    <string name="label_float_btn">btnNovoCadastro</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="btn_salvar">Salvar</string>
+
+    <!-- Dialog -->
+
+    <string name="txt_titulo_dialog">Cadastre a Pessoa</string>
+
     <string name="label_nome">Nome</string>
-    <string name="label_"></string>
+    <string name="label_nome_social">Nome Social</string>
+    <string name="label_genero">Gênero</string>
+    <string name="label_pai">Pai</string>
+    <string name="label_mae">Mãe</string>
+    <string name="label_renda">Renda</string>
+
+    <string name="placeholder_nome">Digite seu nome</string>
+    <string name="placeholder_nome_social">Digite seu nome social</string>
+    <string name="placeholder_genero">Escolha seu gênero</string>
+    <string name="placeholder_pai">Escolha seu pai</string>
+    <string name="placeholder_mae">Escolha sua mãe</string>
+    <string name="placeholder_renda">Digite sua renda</string>
+
+
 
 
 </resources>
