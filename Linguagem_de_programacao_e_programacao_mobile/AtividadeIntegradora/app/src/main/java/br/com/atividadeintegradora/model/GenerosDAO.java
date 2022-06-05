@@ -416,5 +416,29 @@ public class GenerosDAO {
         }
     }
 
+    public List<String> buscaTermo(){
+        try{
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+            String[] projection = {
+                    BDContract.GenerosEntry.COLUMN_NAME_TERMO
+            };
+
+            Cursor cursor = CRUD.select(db, BDContract.GenerosEntry.TABLE_NAME, projection, null, null, null, null, null);
+
+            String termo = null;
+            List<String> l = new ArrayList<>();
+            while (cursor.moveToNext()){
+                termo = cursor.getString(cursor.getColumnIndexOrThrow(BDContract.GenerosEntry.COLUMN_NAME_TERMO));
+
+                l.add(termo);
+            }
+            cursor.close();
+
+            return l;
+        }catch (Exception e){
+            return null;
+        }
+    }
 
 }

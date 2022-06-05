@@ -95,5 +95,30 @@ public class PessoaDAO {
         }
     }
 
+    public List<String> buscaNome(){
+        try{
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+            String[] projection = {
+                    BDContract.PessoasEntry.COLUMN_NAME_NOME
+            };
+
+            Cursor cursor = CRUD.select(db, BDContract.PessoasEntry.TABLE_NAME, projection, null, null, null, null, null);
+
+            String nome = null;
+            List<String> l = new ArrayList<>();
+            while (cursor.moveToNext()){
+                nome = cursor.getString(cursor.getColumnIndexOrThrow(BDContract.PessoasEntry.COLUMN_NAME_NOME));
+
+                l.add(nome);
+            }
+            cursor.close();
+
+            return l;
+        }catch (Exception e){
+            return null;
+        }
+    }
+
 
 }
