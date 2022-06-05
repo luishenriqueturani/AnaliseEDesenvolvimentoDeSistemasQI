@@ -1,11 +1,13 @@
 package br.com.atividadeintegradora.model;
 
 public class Pessoa {
-    private int id;
+    private long id;
     private String nome;
     private String nomeSocial;
     private String genero;
     private float renda;
+    private String pai;
+    private String mae;
 
     public Pessoa(String nome, String nomeSocial, String genero, float renda) {
         this.nome = nome;
@@ -14,7 +16,7 @@ public class Pessoa {
         this.renda = renda;
     }
 
-    public Pessoa(int id, String nome, String nomeSocial, String genero, float renda) {
+    public Pessoa(long id, String nome, String nomeSocial, String genero, float renda) {
         this.id = id;
         this.nome = nome;
         this.nomeSocial = nomeSocial;
@@ -22,11 +24,21 @@ public class Pessoa {
         this.renda = renda;
     }
 
-    public int getId() {
+    public Pessoa(long id, String nome, String nomeSocial, String genero, float renda, String pai, String mae) {
+        this.id = id;
+        this.nome = nome;
+        this.nomeSocial = nomeSocial;
+        this.genero = genero;
+        this.renda = renda;
+        this.pai = pai;
+        this.mae = mae;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -60,5 +72,21 @@ public class Pessoa {
 
     public void setRenda(float renda) {
         this.renda = renda;
+    }
+
+    public String getPai() {
+        return pai;
+    }
+
+    public void setPai(String pai) {
+        this.pai = pai;
+    }
+
+    public String getMae() {
+        return mae;
+    }
+
+    public void setMae(String mae) {
+        this.mae = mae;
     }
 }

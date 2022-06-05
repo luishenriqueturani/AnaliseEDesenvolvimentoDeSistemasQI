@@ -2,7 +2,12 @@ package br.com.atividadeintegradora.model;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.BaseColumns;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.atividadeintegradora.entities.BDContract;
 import br.com.atividadeintegradora.entities.CRUD;
@@ -354,6 +359,61 @@ public class GenerosDAO {
             return false;
         }
 
+    }
+
+    public List<Generos> buscaTodosGeneros(){
+        try{
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+            String[] projection = {
+                    BaseColumns._ID,
+                    BDContract.GenerosEntry.COLUMN_NAME_TERMO
+            };
+
+            Cursor cursor = CRUD.select(db, BDContract.GenerosEntry.TABLE_NAME, projection, null, null, null, null, null);
+
+            List<Generos> l = new ArrayList<>();
+
+            while (cursor.moveToNext()){
+                long id = cursor.getLong(cursor.getColumnIndexOrThrow(BDContract.GenerosEntry._ID));
+                String termo = cursor.getString(cursor.getColumnIndexOrThrow(BDContract.GenerosEntry.COLUMN_NAME_TERMO));
+
+                Generos g = new Generos(id, termo);
+
+                l.add(g);
+            }
+            cursor.close();
+
+            return l;
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    public String buscaTermoPorID(long id){
+        try{
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+            String[] projection = {
+                    BDContract.GenerosEntry.COLUMN_NAME_TERMO
+            };
+
+            String coluna = BDContract.GenerosEntry._ID + " LIKE ? ";
+            String[] args = {String.valueOf(id)};
+
+            Cursor cursor = CRUD.select(db, BDContract.GenerosEntry.TABLE_NAME, projection, coluna, args, null, null, null);
+
+            String termo = null;
+            while (cursor.moveToNext()){
+                termo = cursor.getString(cursor.getColumnIndexOrThrow(BDContract.GenerosEntry.COLUMN_NAME_TERMO));
+
+            }
+            cursor.close();
+
+            return termo;
+        }catch (Exception e){
+            return null;
+        }
     }
 
 
