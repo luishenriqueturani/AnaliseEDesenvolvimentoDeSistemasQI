@@ -42,13 +42,17 @@ public class MainActivity extends AppCompatActivity {
 
         pessoas = (ArrayList<Pessoa>) pdao.buscarTodasPessoas();
 
-        PessoasAdapter adapter = new PessoasAdapter(pessoas);
+        if(pessoas != null){
+            PessoasAdapter adapter = new PessoasAdapter(pessoas);
 
-        RecyclerView listaCadastrados = (RecyclerView) findViewById(R.id.listaCadastrados);
+            RecyclerView listaCadastrados = (RecyclerView) findViewById(R.id.listaCadastrados);
 
-        listaCadastrados.setAdapter(adapter);
-        listaCadastrados.setLayoutManager(new LinearLayoutManager(this));
-        
+            listaCadastrados.setAdapter(adapter);
+            listaCadastrados.setLayoutManager(new LinearLayoutManager(this));
+        }
+
+
+
 
         /*
          * Float button and dialog
