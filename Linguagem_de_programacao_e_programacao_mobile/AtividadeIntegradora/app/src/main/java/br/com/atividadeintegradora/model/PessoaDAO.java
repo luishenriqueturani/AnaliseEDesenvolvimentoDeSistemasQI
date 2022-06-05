@@ -1,5 +1,6 @@
 package br.com.atividadeintegradora.model;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -118,6 +119,29 @@ public class PessoaDAO {
         }catch (Exception e){
             return null;
         }
+    }
+
+    public long cadastrar(Pessoa p){
+
+        try{
+            DBHelper helper = new DBHelper(this.context);
+            SQLiteDatabase db = helper.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+
+            values.put(BDContract.PessoasEntry.COLUMN_NAME_NOME, p.getNome());
+            values.put(BDContract.PessoasEntry.COLUMN_NAME_NOME_SOCIAL, p.getNomeSocial());
+            values.put(BDContract.PessoasEntry.COLUMN_NAME_RENDA, p.getRenda());
+            values.put(BDContract.PessoasEntry.COLUMN_NAME_GENERO, p.getGenero());
+            values.put(BDContract.PessoasEntry.COLUMN_NAME_MAE, p.getMae());
+            values.put(BDContract.PessoasEntry.COLUMN_NAME_PAI, p.getPai());
+
+            return CRUD.insert(BDContract.PessoasEntry.TABLE_NAME, values, db);
+
+        }catch (Exception e){
+            return -1;
+        }
+
     }
 
 

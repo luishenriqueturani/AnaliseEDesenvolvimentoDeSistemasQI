@@ -22,6 +22,15 @@ public class Pessoa {
         this.renda = renda;
     }
 
+    public Pessoa(String nome, String nomeSocial, String genero, float renda, String pai, String mae) {
+        this.nome = nome;
+        this.nomeSocial = nomeSocial;
+        this.genero = genero;
+        this.renda = renda;
+        this.pai = pai;
+        this.mae = mae;
+    }
+
     public Pessoa(long id, String nome, String nomeSocial, String genero, float renda, String pai, String mae) {
         this.id = id;
         this.nome = nome;

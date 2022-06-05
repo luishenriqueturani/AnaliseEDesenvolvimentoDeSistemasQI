@@ -2,6 +2,7 @@ package br.com.atividadeintegradora.view;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,12 +11,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import java.util.Arrays;
 import java.util.List;
 
+import br.com.atividadeintegradora.MainActivity;
 import br.com.atividadeintegradora.R;
+import br.com.atividadeintegradora.bo.Rules;
 import br.com.atividadeintegradora.model.Generos;
 import br.com.atividadeintegradora.model.GenerosDAO;
 import br.com.atividadeintegradora.model.Pessoa;
@@ -85,21 +89,45 @@ public class DialogCadastro extends DialogFragment implements AdapterView.OnItem
                 float renda = Float.parseFloat(edRenda.getText().toString().isEmpty() ? "0" : edRenda.getText().toString());
 
                 String genero = spGenero.getSelectedItem().toString();
-                long generoId = spGenero.getSelectedItemId();
                 String pai = spPai.getSelectedItem().toString();
-                long paiId = spPai.getSelectedItemId();
                 String mae = spMae.getSelectedItem().toString();
-                long maeId = spMae.getSelectedItemId();
 
-                GUI.lancarToast(v.getContext(), "Nome: " + nome +
+                Pessoa p = new Pessoa(nome, nomeSocial, genero, renda, pai, mae);
+
+                /*GUI.lancarToast(v.getContext(), "Nome: " + nome +
                                                         "\nNome social: " + nomeSocial +
                                                         "\nRenda: " + renda +
                                                         "\nGênero: " + genero +
-                                                        "\nGeneroID: " + generoId +
                                                         "\nPai: " + pai +
-                                                        "\nPaiID: " + paiId +
-                                                        "\nMãe: " + mae +
-                                                        "\nMaeID: " + maeId);
+                                                        "\nMãe: " + mae );*/
+
+                Rules r = new Rules(v.getContext());
+
+                switch (r.cadastrar(p)){
+                    case -1:
+                        GUI.lancarToast(v.getContext(), "Houve um erro ao realizar o cadastro!");
+                        break;
+                    case 0:
+                        GUI.lancarToast(v.getContext(), "O campo de nome não pode estar vazio!");
+                        break;
+                    case 1:
+                        GUI.lancarToast(v.getContext(), "O campo de nome social não pode estar vazio!");
+                        break;
+                    case 2:
+                        GUI.lancarToast(v.getContext(), "A renda não pode ser menor do que 0!");
+                        break;
+                    case 3:
+                        GUI.lancarToast(v.getContext(), "O campo de gênero não pode estar vazio!");
+                        break;
+                    case 4:
+                        GUI.lancarToast(v.getContext(), "Não foi possível realizar o cadastro!");
+                        break;
+                    case 5:
+                        GUI.lancarToast(v.getContext(), "Cadastro realizado com sucesso!");
+                        DialogCadastro.this.getDialog().cancel();
+                        break;
+
+                }
             }
         });
 
@@ -110,12 +138,20 @@ public class DialogCadastro extends DialogFragment implements AdapterView.OnItem
     }
 
     @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+
+        MainActivity m = (MainActivity) getActivity();
+
+        m.recreate();
+    }
+
+    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         parent.getItemAtPosition(position);
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 }

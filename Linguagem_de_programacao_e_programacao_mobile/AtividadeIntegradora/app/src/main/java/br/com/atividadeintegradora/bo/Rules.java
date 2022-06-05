@@ -7,6 +7,8 @@ import java.util.List;
 
 import br.com.atividadeintegradora.entities.DBHelper;
 import br.com.atividadeintegradora.model.GenerosDAO;
+import br.com.atividadeintegradora.model.Pessoa;
+import br.com.atividadeintegradora.model.PessoaDAO;
 
 public class Rules {
 
@@ -17,9 +19,9 @@ public class Rules {
     }
 
     public boolean onStart(){
-        DBHelper helper = new DBHelper(this.context);
+        /*DBHelper helper = new DBHelper(this.context);
         SQLiteDatabase db = helper.getWritableDatabase();
-        helper.onUpgrade(db, 1, 2);
+        helper.onUpgrade(db, 1, 2);*/
 
         GenerosDAO gdao = new GenerosDAO(this.context);
 
@@ -37,6 +39,39 @@ public class Rules {
         return true;
     }
 
+    public int cadastrar(Pessoa p){
 
+        try{
+
+            if(p.getNome().isEmpty()){
+                return 0;
+            }
+
+            if(p.getNomeSocial().isEmpty()){
+                return 1;
+            }
+
+            if(p.getRenda() < 0 ){
+                return 2;
+            }
+
+            if(p.getGenero().isEmpty()){
+                return 3;
+            }
+
+            PessoaDAO pdao = new PessoaDAO(this.context);
+
+            long novoId = pdao.cadastrar(p);
+
+            if(novoId > 0){
+                return 5;
+            }
+
+            return 4;
+
+        }catch (Exception e){
+            return -1;
+        }
+    }
 
 }

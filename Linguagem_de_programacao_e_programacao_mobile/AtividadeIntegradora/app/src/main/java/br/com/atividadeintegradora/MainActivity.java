@@ -5,6 +5,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DialogFragment dialog = new DialogCadastro();
                 dialog.show(getSupportFragmentManager(), dialog.getTag());
+
             }
         });
 
