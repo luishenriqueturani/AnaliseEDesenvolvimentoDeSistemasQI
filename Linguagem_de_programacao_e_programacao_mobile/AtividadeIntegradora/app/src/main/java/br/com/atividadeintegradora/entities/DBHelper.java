@@ -11,10 +11,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 BDContract.PessoasEntry._ID + " INTEGER PRIMARY KEY," +
                 BDContract.PessoasEntry.COLUMN_NAME_NOME + " VARCHAR(500)," +
                 BDContract.PessoasEntry.COLUMN_NAME_NOME_SOCIAL + " VARCHAR(500)," +
-                BDContract.PessoasEntry.COLUMN_NAME_GENERO + " INTEGER," +
+                BDContract.PessoasEntry.COLUMN_NAME_GENERO + " VARCHAR(250)," +
                 BDContract.PessoasEntry.COLUMN_NAME_RENDA + " REAL," +
-                BDContract.PessoasEntry.COLUMN_NAME_PAI + " INTEGER," +
-                BDContract.PessoasEntry.COLUMN_NAME_MAE + "INTEGER);";
+                BDContract.PessoasEntry.COLUMN_NAME_PAI + " VARCHAR(500)," +
+                BDContract.PessoasEntry.COLUMN_NAME_MAE + " VARCHAR(500));";
 
     private static final String CREATE_ENTRIES_GENEROS = "" +
             "CREATE TABLE IF NOT EXISTS " + BDContract.GenerosEntry.TABLE_NAME + " (" +

@@ -21,7 +21,7 @@ import br.com.atividadeintegradora.model.GenerosDAO;
 import br.com.atividadeintegradora.model.Pessoa;
 import br.com.atividadeintegradora.model.PessoaDAO;
 
-public class DialogCadastro extends DialogFragment {
+public class DialogCadastro extends DialogFragment implements AdapterView.OnItemSelectedListener {
 
     public Dialog onCreateDialog(Bundle savedInstanceState){
 
@@ -82,11 +82,24 @@ public class DialogCadastro extends DialogFragment {
             public void onClick(View v) {
                 String nome = edNome.getText().toString();
                 String nomeSocial = edNomeSocial.getText().toString();
-                float renda = Float.parseFloat(edRenda.getText().toString());
+                float renda = Float.parseFloat(edRenda.getText().toString().isEmpty() ? "0" : edRenda.getText().toString());
 
-                //String genero = spGenero.get
+                String genero = spGenero.getSelectedItem().toString();
+                long generoId = spGenero.getSelectedItemId();
+                String pai = spPai.getSelectedItem().toString();
+                long paiId = spPai.getSelectedItemId();
+                String mae = spMae.getSelectedItem().toString();
+                long maeId = spMae.getSelectedItemId();
 
-                GUI.lancarToast(v.getContext(), "Clicou em salvar");
+                GUI.lancarToast(v.getContext(), "Nome: " + nome +
+                                                        "\nNome social: " + nomeSocial +
+                                                        "\nRenda: " + renda +
+                                                        "\nGênero: " + genero +
+                                                        "\nGeneroID: " + generoId +
+                                                        "\nPai: " + pai +
+                                                        "\nPaiID: " + paiId +
+                                                        "\nMãe: " + mae +
+                                                        "\nMaeID: " + maeId);
             }
         });
 
@@ -96,4 +109,13 @@ public class DialogCadastro extends DialogFragment {
         return builder.create();
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        parent.getItemAtPosition(position);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

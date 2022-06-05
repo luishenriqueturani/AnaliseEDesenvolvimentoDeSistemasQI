@@ -9,11 +9,9 @@ public class Pessoa {
     private String pai;
     private String mae;
 
-    public Pessoa(String nome, String nomeSocial, String genero, float renda) {
+    public Pessoa(long id, String nome) {
+        this.id = id;
         this.nome = nome;
-        this.nomeSocial = nomeSocial;
-        this.genero = genero;
-        this.renda = renda;
     }
 
     public Pessoa(long id, String nome, String nomeSocial, String genero, float renda) {
