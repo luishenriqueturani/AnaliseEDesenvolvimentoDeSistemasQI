@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import java.util.List;
 
 import br.com.atividadeintegradora.R;
 import br.com.atividadeintegradora.model.Pessoa;
+import br.com.atividadeintegradora.view.GUI;
 
 public class PessoasAdapter extends RecyclerView.Adapter<PessoasAdapter.ViewHolder> {
     private ArrayList<Pessoa> pList;
@@ -47,6 +49,16 @@ public class PessoasAdapter extends RecyclerView.Adapter<PessoasAdapter.ViewHold
         TextView tvNome = holder.tvNome;
         tvNome.setText(p.getNome());
 
+        LinearLayout itemLista = holder.itemLista;
+        itemLista.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GUI g = new GUI();
+
+                g.lancarDialog(v.getContext(), p);
+            }
+        });
+
     }
 
     @Override
@@ -58,12 +70,14 @@ public class PessoasAdapter extends RecyclerView.Adapter<PessoasAdapter.ViewHold
 
         public TextView tvId;
         public TextView tvNome;
+        public LinearLayout itemLista;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvId = (TextView) itemView.findViewById(R.id.tvId);
             tvNome = (TextView) itemView.findViewById(R.id.tvNome);
+            itemLista = (LinearLayout) itemView.findViewById(R.id.itemLista);
         }
     }
 }

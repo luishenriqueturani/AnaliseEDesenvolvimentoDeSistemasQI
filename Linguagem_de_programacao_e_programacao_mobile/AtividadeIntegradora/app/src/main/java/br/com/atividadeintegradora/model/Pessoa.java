@@ -96,4 +96,17 @@ public class Pessoa {
     public void setMae(String mae) {
         this.mae = mae;
     }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", nomeSocial='" + nomeSocial + '\'' +
+                ", genero='" + genero + '\'' +
+                ", renda=" + renda +
+                ", pai='" + pai + '\'' +
+                ", mae='" + mae + '\'' +
+                '}';
+    }
 }

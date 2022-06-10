@@ -41,23 +41,17 @@ public class PessoaDAO {
             Cursor cursor = CRUD.select(db, BDContract.PessoasEntry.TABLE_NAME, projection, null, null, null, null, null);
 
             List<Pessoa> l = new ArrayList<>();
-            GenerosDAO gdao = new GenerosDAO(this.context);
 
             while (cursor.moveToNext()){
                 long id = cursor.getLong(cursor.getColumnIndexOrThrow(BDContract.PessoasEntry._ID));
-                long genero = cursor.getLong(cursor.getColumnIndexOrThrow(BDContract.PessoasEntry.COLUMN_NAME_GENERO));
+                String genero = cursor.getString(cursor.getColumnIndexOrThrow(BDContract.PessoasEntry.COLUMN_NAME_GENERO));
                 String nome = cursor.getString(cursor.getColumnIndexOrThrow(BDContract.PessoasEntry.COLUMN_NAME_NOME));
                 String nomeSocial = cursor.getString(cursor.getColumnIndexOrThrow(BDContract.PessoasEntry.COLUMN_NAME_NOME_SOCIAL));
                 float renda = cursor.getFloat(cursor.getColumnIndexOrThrow(BDContract.PessoasEntry.COLUMN_NAME_RENDA));
-                long pai = cursor.getLong(cursor.getColumnIndexOrThrow(BDContract.PessoasEntry.COLUMN_NAME_PAI));
-                long mae = cursor.getLong(cursor.getColumnIndexOrThrow(BDContract.PessoasEntry.COLUMN_NAME_MAE));
+                String pai = cursor.getString(cursor.getColumnIndexOrThrow(BDContract.PessoasEntry.COLUMN_NAME_PAI));
+                String mae = cursor.getString(cursor.getColumnIndexOrThrow(BDContract.PessoasEntry.COLUMN_NAME_MAE));
 
-                String termo = gdao.buscaTermoPorID(genero);
-
-                String nomePai = buscaNomePorId(pai);
-                String nomeMae = buscaNomePorId(mae);
-
-                Pessoa p = new Pessoa( id, nome, nomeSocial, termo, renda, nomePai, nomeMae );
+                Pessoa p = new Pessoa( id, nome, nomeSocial, genero, renda, pai, mae );
 
                 l.add(p);
             }

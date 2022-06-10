@@ -27,6 +27,8 @@
     <string name="placeholder_mae">Escolha sua mãe</string>
     <string name="placeholder_renda">Digite sua renda</string>
 
+    <!-- Dialog mostrar cadastro -->
+    <string name="txt_titulo_mostra_cadastro">Dados do cadastro</string>
 
 
 
