@@ -2,8 +2,10 @@ package org.example;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import org.glassfish.grizzly.http.server.HttpServer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +25,27 @@ public class Cliente {
     @GET
     @Path("clients")
     @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<Alunos> getIt() {
+    public List<Alunos> getAll() {
         return retornaListaAlunos();
     }
 
+    @GET
+    @Path("client/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Alunos getOne(@PathParam("id") int id) {
 
-    public ArrayList<Alunos> retornaListaAlunos(){
-        ArrayList<Alunos> listaAlunos = new ArrayList<>();
+        for (Alunos aluno: retornaListaAlunos() ) {
+            if(aluno.getId() == id){
+                return aluno;
+            }
+        }
+
+        return null;
+    }
+
+
+    public List<Alunos> retornaListaAlunos(){
+        List<Alunos> listaAlunos = new ArrayList<>();
 
         listaAlunos.add(new Alunos(1, "Joao", "joao@joao.com",3));
         listaAlunos.add(new Alunos(2, "Maria", "maria@maria.com",1));
